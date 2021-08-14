@@ -17,7 +17,10 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 		  .antMatchers("/myBalance").authenticated()
 		  .antMatchers("/myLoans").authenticated()
 		  .antMatchers("/myCards").authenticated()
-		  .antMatchers("/contact","/notices").permitAll() .and() .formLogin() .and()
+		  .antMatchers("/contact","/notices").permitAll()
+				  .and()
+		  .formLogin()
+				  .and()
 		  .httpBasic();
 			
 	}
@@ -32,7 +35,5 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 			.passwordEncoder(NoOpPasswordEncoder.getInstance());
 	}
-	
-	
 
 }
