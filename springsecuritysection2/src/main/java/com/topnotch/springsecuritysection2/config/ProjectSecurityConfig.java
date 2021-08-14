@@ -28,6 +28,7 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
 	public PasswordEncoder getPasswordEncoder(){
-    	return NoOpPasswordEncoder.getInstance();
+        //noinspection deprecation
+        return NoOpPasswordEncoder.getInstance();
 	}
 }
