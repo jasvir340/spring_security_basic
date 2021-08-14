@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="springsecuritybasic" target="11" />
+      <module name="springsecuritybasic" target="9" />
       <module name="springsecuritysection2" target="1.8" />
     </bytecodeTargetLevel>
   </component>
