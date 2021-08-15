@@ -17,12 +17,7 @@ public class AccountController {
 
 	@PostMapping("/myAccount")
 	public Accounts getAccountDetails(@RequestBody Customer customer) {
-		Accounts accounts = accountsRepository.findByCustomerId(customer.getId());
-		if (accounts != null ) {
-			return accounts;
-		}else {
-			return null;
-		}
+		return accountsRepository.findByCustomerId(customer.getId());
 	}
 	
 }
