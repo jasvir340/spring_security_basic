@@ -28,6 +28,6 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
 	public PasswordEncoder getPasswordEncoder(){
-        return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2A);
+        return new BCryptPasswordEncoder();
 	}
 }
