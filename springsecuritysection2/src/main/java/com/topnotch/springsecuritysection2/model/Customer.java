@@ -1,20 +1,32 @@
 package com.topnotch.springsecuritysection2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "customer_id")
     private int id;
 
-    private String pwd;
+    private String name;
 
     private String email;
 
+    @Column(name = "mobile_number")
+    private String mobileNumber;
+
+    @JsonIgnore
+    private String pwd;
+
     private String role;
+
+    @Column(name = "create_dt")
+    private String createDt;
 
     public int getId() {
         return id;
@@ -24,12 +36,12 @@ public class Customer {
         this.id = id;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getName() {
+        return name;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -40,6 +52,22 @@ public class Customer {
         this.email = email;
     }
 
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
     public String getRole() {
         return role;
     }
@@ -48,13 +76,12 @@ public class Customer {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", pwd='" + pwd + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+    public String getCreateDt() {
+        return createDt;
     }
+
+    public void setCreateDt(String createDt) {
+        this.createDt = createDt;
+    }
+
 }
