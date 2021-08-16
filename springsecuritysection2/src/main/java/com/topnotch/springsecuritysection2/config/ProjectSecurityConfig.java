@@ -3,6 +3,7 @@ package com.topnotch.springsecuritysection2.config;
 import com.topnotch.springsecuritysection2.filter.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
+@EnableGlobalMethodSecurity(jsr250Enabled = true, prePostEnabled = true, securedEnabled = true)
 public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -43,7 +45,7 @@ public class ProjectSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/myAccount").hasRole("USER")
                 .antMatchers("/myBalance").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/myLoans").hasRole("ROOT")
+                .antMatchers("/myLoans").authenticated()
                 .antMatchers("/myCards").authenticated()
                 .antMatchers("/contact", "/notices").permitAll()
                 .and()
