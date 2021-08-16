@@ -1,5 +1,6 @@
 package com.topnotch.springsecuritysection2.config;
 
+import com.topnotch.springsecuritysection2.model.Authority;
 import com.topnotch.springsecuritysection2.model.Customer;
 import com.topnotch.springsecuritysection2.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class JassiBankUsernamePwdAuthenticationProvider implements AuthenticationProvider {
@@ -33,9 +35,7 @@ public class JassiBankUsernamePwdAuthenticationProvider implements Authenticatio
         List<Customer> customers = customerRepository.findByEmail(username);
         if(customers.size()>0){
             if(passwordEncoder.matches(password,customers.get(0).getPwd())){
-                List<GrantedAuthority> authorities = new ArrayList<>();
-                authorities.add(new SimpleGrantedAuthority(customers.get(0).getRole()));
-                return new UsernamePasswordAuthenticationToken(username,password,authorities);
+                return new UsernamePasswordAuthenticationToken(username,password,getGrantedAuthorities(customers.get(0).getAuthorities()));
             }else{
                 throw new BadCredentialsException("Invalid Password !!!");
             }
@@ -43,6 +43,14 @@ public class JassiBankUsernamePwdAuthenticationProvider implements Authenticatio
             throw new BadCredentialsException("No user registered with this details!!!");
         }
 
+    }
+
+    private List<GrantedAuthority> getGrantedAuthorities(Set<Authority> authorities){
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        for (Authority authority : authorities){
+            grantedAuthorities.add(new SimpleGrantedAuthority(authority.getName()));
+        }
+        return grantedAuthorities;
     }
 
     @Override
