@@ -8,15 +8,18 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springsecuritysection2" />
         <module name="springsecuritybasic" />
+        <module name="resourceserver" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="resourceserver" target="11" />
       <module name="springsecuritybasic" target="9" />
       <module name="springsecuritysection2" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="resourceserver" options="-parameters" />
       <module name="springsecuritybasic" options="-parameters" />
       <module name="springsecuritysection2" options="-parameters" />
     </option>
