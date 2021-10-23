@@ -1,12 +1,12 @@
 package com.topnotch.resourceserver.controller;
 
+import java.util.List;
+
 import com.topnotch.resourceserver.model.Notice;
 import com.topnotch.resourceserver.repository.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class NoticesController {
@@ -16,6 +16,12 @@ public class NoticesController {
 
     @GetMapping("/notices")
     public List<Notice> getNotices() {
-        return noticeRepository.findAllNotices();
+        List<Notice> notices = noticeRepository.findAllActiveNotices();
+        if (notices != null ) {
+            return notices;
+        }else {
+            return null;
+        }
     }
+
 }

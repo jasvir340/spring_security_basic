@@ -1,7 +1,13 @@
 package com.topnotch.resourceserver.model;
 
-import javax.persistence.*;
 import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "cards")
@@ -12,8 +18,7 @@ public class Cards {
     @Column(name = "card_id")
     private int cardId;
 
-    @Column(name = "customer_id")
-    private int customerId;
+    private String email;
 
     @Column(name = "card_number")
     private String cardNumber;
@@ -41,12 +46,12 @@ public class Cards {
         this.cardId = cardId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getCardNumber() {

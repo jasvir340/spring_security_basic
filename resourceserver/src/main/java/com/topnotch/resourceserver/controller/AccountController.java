@@ -11,12 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AccountController {
 
-	@Autowired
-	private AccountsRepository accountsRepository;
+    @Autowired
+    private AccountsRepository accountsRepository;
 
-	@PostMapping("/myAccount")
-	public Accounts getAccountDetails(@RequestBody Customer customer) {
-		return accountsRepository.findByCustomerId(customer.getId());
-	}
-	
+    @PostMapping("/myAccount")
+    public Accounts getAccountDetails(@RequestBody Customer customer) {
+        Accounts accounts = accountsRepository.findByEmail(customer.getEmail());
+        if (accounts != null ) {
+            return accounts;
+        }else {
+            return null;
+        }
+    }
+
 }

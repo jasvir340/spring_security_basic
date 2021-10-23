@@ -1,13 +1,14 @@
 package com.topnotch.resourceserver.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
 
 @Entity
-@Table(name = "account_transactions")
+@Table(name="account_transactions")
 public class AccountTransactions {
 
     @Id
@@ -17,8 +18,7 @@ public class AccountTransactions {
     @Column(name="account_number")
     private long accountNumber;
 
-    @Column(name = "customer_id")
-    private int customerId;
+    private String email;
 
     @Column(name="transaction_dt")
     private Date transactionDt;
@@ -54,12 +54,12 @@ public class AccountTransactions {
         this.accountNumber = accountNumber;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getTransactionDt() {
@@ -109,5 +109,4 @@ public class AccountTransactions {
     public void setCreateDt(String createDt) {
         this.createDt = createDt;
     }
-
 }
